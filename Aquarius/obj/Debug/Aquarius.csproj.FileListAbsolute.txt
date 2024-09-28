@@ -1,0 +1,11 @@
+C:\Users\DevChacal\Desktop\Aquarius\bin\Debug\Aquarius.exe.config
+C:\Users\DevChacal\Desktop\Aquarius\bin\Debug\Aquarius.exe
+C:\Users\DevChacal\Desktop\Aquarius\bin\Debug\Aquarius.pdb
+C:\Users\DevChacal\Desktop\Aquarius\obj\Debug\Aquarius.csproj.AssemblyReference.cache
+C:\Users\DevChacal\Desktop\Aquarius\obj\Debug\Aquarius.CadPacientes.resources
+C:\Users\DevChacal\Desktop\Aquarius\obj\Debug\Aquarius.Properties.Resources.resources
+C:\Users\DevChacal\Desktop\Aquarius\obj\Debug\Aquarius.csproj.GenerateResource.cache
+C:\Users\DevChacal\Desktop\Aquarius\obj\Debug\Aquarius.csproj.CoreCompileInputs.cache
+C:\Users\DevChacal\Desktop\Aquarius\obj\Debug\Aquarius.exe
+C:\Users\DevChacal\Desktop\Aquarius\obj\Debug\Aquarius.pdb
+C:\Users\DevChacal\Desktop\Aquarius\obj\Debug\Aquarius.AquariusMenu.resources
