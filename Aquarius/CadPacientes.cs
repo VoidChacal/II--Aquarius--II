@@ -166,10 +166,12 @@ namespace Aquarius
                 NomePaciente.Text = "";
                 DescPaciente.Text = "";
                 IdadePaciente.Text = ""; //Alterar
+                SexoPaciente.Text = "";
                 CPFPaciente.Text = "";
                 RGPaciente.Text = "";
                 DtEntPaciente.Text = "";
                 Responsavel.Text = "";
+                ContResponsavel.Text = "";
                 // Imagem Novo
                 HabilitaEdit();
                 EditTipo = true;
@@ -179,16 +181,34 @@ namespace Aquarius
         // -------- Salvar Perfil Criado/Edit ----------
         private void Salvar_Click(object sender, EventArgs e)
         {
-            if (EditTipo)
+            // MUDAR ESSA PORRA NÃO FUNCIONA MACACO
+            String textDigUpper = SexoPaciente.Text;
+
+            String textUpper = textDigUpper.ToUpper();
+
+            // VERIFICA ESSA MERDA
+            DateTime parsedDate;
+            if (!DateTime.TryParse(IdadePaciente.Text, out parsedDate))
             {
-                DateTime parsedDate;
-                if (!DateTime.TryParse(IdadePaciente.Text, out parsedDate))
+                MessageBox.Show("Por favor, insira uma data válida no formato DD/MM/AAAA.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //HabilitaEdit();
+
+            }
+            if (SexoPaciente.Text != "M" && SexoPaciente.Text != "F") // <-- BLACK MONKEY
+            {
+                MessageBox.Show("Por favor, insira um sexo válido", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                SexoPaciente.Text = "";
+                // CRIAR UMA CLASS PARA APAGAR TUDO
+            }
+            
+            // Tudo certo :)
+            else
+            {
+                if (EditTipo)
                 {
-                    MessageBox.Show("Por favor, insira uma data válida no formato DD/MM/AAAA.");
-                    HabilitaEdit();
-                }
-                else
-                {
+
+
+
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].codigo = int.Parse(CodPaciente.Text);
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].nome = NomePaciente.Text;
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].descricao = DescPaciente.Text;
@@ -199,19 +219,14 @@ namespace Aquarius
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].DataEntrada = DtEntPaciente.Text;
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].ContRespon = ContResponsavel.Text;
                     atual = AquariusMenu.contPacientes++;
-                }
-                
-            }
-            else
-            {
-                DateTime parsedDate;
-                if (!DateTime.TryParse(IdadePaciente.Text, out parsedDate))
-                {
-                    MessageBox.Show("Por favor, insira uma data válida no formato DD/MM/AAAA.");
-                    HabilitaEdit();
+
+
                 }
                 else
                 {
+
+
+
                     AquariusMenu.Pacientes[atual].nome = NomePaciente.Text;
                     AquariusMenu.Pacientes[atual].descricao = DescPaciente.Text;
                     AquariusMenu.Pacientes[atual].idade = IdadePaciente.Text; //Alterar?
@@ -220,9 +235,11 @@ namespace Aquarius
                     AquariusMenu.Pacientes[atual].RG = RGPaciente.Text;
                     AquariusMenu.Pacientes[atual].DataEntrada = DtEntPaciente.Text;
                     AquariusMenu.Pacientes[atual].ContRespon = ContResponsavel.Text;
+
                 }
+                DesabilitarEdit();
             }
-            DesabilitarEdit();
+            
         }
 
         // --------- Excluir Perfil Atual ----------
@@ -241,6 +258,7 @@ namespace Aquarius
                     AquariusMenu.Pacientes[atual].CPF = "";
                     AquariusMenu.Pacientes[atual].RG = "";
                     AquariusMenu.Pacientes[atual].DataEntrada = "";
+                    AquariusMenu.Pacientes[atual].Responsavel = "";
                     AquariusMenu.Pacientes[atual].ContRespon = "";
                     ShowDados();
                 }
@@ -348,13 +366,16 @@ namespace Aquarius
             Dados = Dados + "-----------------------------------------------------------------" + (char)10 + (char)10;
             Dados = Dados + "Código: " + CodPaciente.Text + (char)10 + (char)10;
             Dados = Dados + "Nome: " + NomePaciente.Text + (char)10 + (char)10;
-            Dados = Dados + "Descrição: " + DescPaciente.Text + (char)10 + (char)10;
             Dados = Dados + "Idade: " + IdadePaciente.Text + (char)10 + (char)10;
+            Dados = Dados + "Sexo: " + SexoPaciente.Text + (char)10 + (char)10;
             Dados = Dados + "CPF: " + CPFPaciente.Text + (char)10 + (char)10;
             Dados = Dados + "RG: " + RGPaciente.Text + (char)10 + (char)10;
             Dados = Dados + "Data de Entrada: " + DtEntPaciente.Text + (char)10 + (char)10;
             Dados = Dados + "Responsavel: " + Responsavel.Text + (char)10 + (char)10;
-            Dados = Dados + "Contato do Responsavel; " + ContResponsavel.Text + (char)10 + (char)10;
+            Dados = Dados + "Contato do Responsavel: " + ContResponsavel.Text + (char)10 + (char)10;
+            Dados = Dados + "------------------------------------------------------------------" + (char)10 + (char)10;
+            Dados = Dados + "Descrição do Paciente: " + DescPaciente.Text + (char)10 + (char)10;
+            Dados = Dados + "------------------------------------------------------------------" + (char)10 + (char)10;
             objImpressao.DrawString(Dados, new Font("Microsoft Sans Serif", 12, FontStyle.Regular), Brushes.Black, 50, 50);
 
             if (FotoPaciente.Image != null)
