@@ -17,6 +17,13 @@ namespace Aquarius
             public int codigo;
             public string nome;
             public string descricao;
+            public string idade;
+            public string sexo;
+            public string CPF;
+            public string RG;
+            public string DataEntrada;
+            public string Responsavel;
+            public string ContRespon;
             // Imagem talvez?
         }
 
@@ -75,18 +82,19 @@ namespace Aquarius
             int pag = 0, linha = 0, i = 0;
             bool cabecalho = true, itens = true;
 
+            // Puta que pariu que merda de codigo
             while (cabecalho)
             {
-                Dados = "                                   RELATÓRIO DOS PACIENTES" + (char)10;
-                Dados += "Data: " + DateTime.Now.ToString("dd/MM/yyyy") + "    Pág:  " + pag.ToString("00") + (char)10;
-                Dados += "--------------------------------------------------------------------------------" + (char)10;
-                Dados += "Código Nome                                      Descrição" + (char)10;
-                Dados += "--------------------------------------------------------------------------------" + (char)10;
+                Dados = "                                                                 RELATÓRIO DOS PACIENTES" + (char)10;
+                Dados += "Data: " + DateTime.Now.ToString("dd/MM/yyyy").PadRight(153) + "    Pág:  " + pag.ToString("00") + (char)10;
+                Dados += "-----------------------------------------------------------------------------------------------------------------------------------------------------" + (char)10;
+                Dados += "Código      Nome                                              CPF                                                                  Contato do Responsavel" + (char)10;
+                Dados += "-----------------------------------------------------------------------------------------------------------------------------------------------------" + (char)10;
                 linha = 5;
                 itens = true;
                 while (itens)
                 {
-                    Dados += Pacientes[i].codigo.ToString("000000") + " " + Pacientes[i].nome.PadRight(40) + "      " + Pacientes[i].descricao + (char)10;
+                    Dados += Pacientes[i].codigo.ToString("0000").PadRight(10) + " | " + Pacientes[i].nome.PadRight(49) + "   |   " + Pacientes[i].CPF.PadRight(60) + "  |  " + Pacientes[i].ContRespon + (char)10;
                     linha++;
                     i++;
                     if (linha >= 64)
@@ -101,7 +109,7 @@ namespace Aquarius
                     }
                 }
             }
-            objImpressao.DrawString(Dados, new Font("Segoe Print", 12, FontStyle.Regular), Brushes.Black, 50, 50);
+            objImpressao.DrawString(Dados, new Font("Microsoft Sans Serif", 10, FontStyle.Regular), Brushes.Black, 50, 50);
         }
 
         // ---------------------------------------------

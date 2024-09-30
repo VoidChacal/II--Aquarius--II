@@ -118,6 +118,7 @@
             this.RelatorioPreview.AutoScrollMargin = new System.Drawing.Size(0, 0);
             this.RelatorioPreview.AutoScrollMinSize = new System.Drawing.Size(0, 0);
             this.RelatorioPreview.ClientSize = new System.Drawing.Size(400, 300);
+            this.RelatorioPreview.Document = this.RelatorioPrint;
             this.RelatorioPreview.Enabled = true;
             this.RelatorioPreview.Icon = ((System.Drawing.Icon)(resources.GetObject("RelatorioPreview.Icon")));
             this.RelatorioPreview.Name = "RelatorioPreview";
