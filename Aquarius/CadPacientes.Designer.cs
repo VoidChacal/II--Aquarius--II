@@ -131,7 +131,7 @@
             this.PainelSearch.Controls.Add(this.Procurar);
             this.PainelSearch.Controls.Add(this.SearchNome);
             this.PainelSearch.Controls.Add(this.label4);
-            this.PainelSearch.Location = new System.Drawing.Point(308, 215);
+            this.PainelSearch.Location = new System.Drawing.Point(219, 139);
             this.PainelSearch.Name = "PainelSearch";
             this.PainelSearch.Size = new System.Drawing.Size(705, 375);
             this.PainelSearch.TabIndex = 20;
@@ -172,6 +172,7 @@
             // SearchNome
             // 
             this.SearchNome.Location = new System.Drawing.Point(143, 115);
+            this.SearchNome.Multiline = false;
             this.SearchNome.Name = "SearchNome";
             this.SearchNome.Size = new System.Drawing.Size(462, 34);
             this.SearchNome.TabIndex = 1;
@@ -190,6 +191,7 @@
             // 
             this.ContResponsavel.Enabled = false;
             this.ContResponsavel.Location = new System.Drawing.Point(270, 379);
+            this.ContResponsavel.Multiline = false;
             this.ContResponsavel.Name = "ContResponsavel";
             this.ContResponsavel.Size = new System.Drawing.Size(230, 28);
             this.ContResponsavel.TabIndex = 34;
@@ -199,6 +201,7 @@
             // 
             this.Responsavel.Enabled = false;
             this.Responsavel.Location = new System.Drawing.Point(168, 340);
+            this.Responsavel.Multiline = false;
             this.Responsavel.Name = "Responsavel";
             this.Responsavel.Size = new System.Drawing.Size(184, 28);
             this.Responsavel.TabIndex = 33;
@@ -227,6 +230,7 @@
             // 
             this.DtEntPaciente.Enabled = false;
             this.DtEntPaciente.Location = new System.Drawing.Point(201, 294);
+            this.DtEntPaciente.Multiline = false;
             this.DtEntPaciente.Name = "DtEntPaciente";
             this.DtEntPaciente.Size = new System.Drawing.Size(152, 28);
             this.DtEntPaciente.TabIndex = 30;
@@ -245,6 +249,7 @@
             // 
             this.RGPaciente.Enabled = false;
             this.RGPaciente.Location = new System.Drawing.Point(79, 254);
+            this.RGPaciente.Multiline = false;
             this.RGPaciente.Name = "RGPaciente";
             this.RGPaciente.Size = new System.Drawing.Size(277, 25);
             this.RGPaciente.TabIndex = 28;
@@ -255,6 +260,7 @@
             // 
             this.CPFPaciente.Enabled = false;
             this.CPFPaciente.Location = new System.Drawing.Point(88, 214);
+            this.CPFPaciente.Multiline = false;
             this.CPFPaciente.Name = "CPFPaciente";
             this.CPFPaciente.Size = new System.Drawing.Size(282, 24);
             this.CPFPaciente.TabIndex = 27;
@@ -265,15 +271,18 @@
             // 
             this.SexoPaciente.Enabled = false;
             this.SexoPaciente.Location = new System.Drawing.Point(95, 172);
+            this.SexoPaciente.Multiline = false;
             this.SexoPaciente.Name = "SexoPaciente";
             this.SexoPaciente.Size = new System.Drawing.Size(73, 25);
             this.SexoPaciente.TabIndex = 26;
             this.SexoPaciente.Text = "";
+            this.SexoPaciente.TextChanged += new System.EventHandler(this.SexoPaciente_TextChanged);
             // 
             // IdadePaciente
             // 
             this.IdadePaciente.Enabled = false;
-            this.IdadePaciente.Location = new System.Drawing.Point(101, 130);
+            this.IdadePaciente.Location = new System.Drawing.Point(238, 130);
+            this.IdadePaciente.Multiline = false;
             this.IdadePaciente.Name = "IdadePaciente";
             this.IdadePaciente.Size = new System.Drawing.Size(154, 25);
             this.IdadePaciente.TabIndex = 25;
@@ -312,9 +321,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(23, 130);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 25);
+            this.label6.Size = new System.Drawing.Size(209, 25);
             this.label6.TabIndex = 21;
-            this.label6.Text = "Idade:";
+            this.label6.Text = "Data de nascimento:";
             // 
             // CodPaciente
             // 
@@ -369,7 +378,7 @@
             // Voltar
             // 
             this.Voltar.ForeColor = System.Drawing.Color.Black;
-            this.Voltar.Location = new System.Drawing.Point(856, 723);
+            this.Voltar.Location = new System.Drawing.Point(973, 575);
             this.Voltar.Name = "Voltar";
             this.Voltar.Size = new System.Drawing.Size(114, 40);
             this.Voltar.TabIndex = 14;
@@ -380,7 +389,7 @@
             // Imprimir
             // 
             this.Imprimir.ForeColor = System.Drawing.Color.Black;
-            this.Imprimir.Location = new System.Drawing.Point(719, 723);
+            this.Imprimir.Location = new System.Drawing.Point(828, 575);
             this.Imprimir.Name = "Imprimir";
             this.Imprimir.Size = new System.Drawing.Size(114, 40);
             this.Imprimir.TabIndex = 13;
@@ -391,7 +400,7 @@
             // Pesquisa
             // 
             this.Pesquisa.ForeColor = System.Drawing.Color.Black;
-            this.Pesquisa.Location = new System.Drawing.Point(584, 723);
+            this.Pesquisa.Location = new System.Drawing.Point(973, 458);
             this.Pesquisa.Name = "Pesquisa";
             this.Pesquisa.Size = new System.Drawing.Size(114, 40);
             this.Pesquisa.TabIndex = 12;
@@ -402,7 +411,7 @@
             // Excluir
             // 
             this.Excluir.ForeColor = System.Drawing.Color.Black;
-            this.Excluir.Location = new System.Drawing.Point(856, 661);
+            this.Excluir.Location = new System.Drawing.Point(973, 520);
             this.Excluir.Name = "Excluir";
             this.Excluir.Size = new System.Drawing.Size(114, 40);
             this.Excluir.TabIndex = 11;
@@ -413,7 +422,7 @@
             // Alterar
             // 
             this.Alterar.ForeColor = System.Drawing.Color.Black;
-            this.Alterar.Location = new System.Drawing.Point(719, 661);
+            this.Alterar.Location = new System.Drawing.Point(828, 520);
             this.Alterar.Name = "Alterar";
             this.Alterar.Size = new System.Drawing.Size(114, 40);
             this.Alterar.TabIndex = 10;
@@ -424,7 +433,7 @@
             // Novo
             // 
             this.Novo.ForeColor = System.Drawing.Color.Black;
-            this.Novo.Location = new System.Drawing.Point(584, 661);
+            this.Novo.Location = new System.Drawing.Point(973, 396);
             this.Novo.Name = "Novo";
             this.Novo.Size = new System.Drawing.Size(114, 40);
             this.Novo.TabIndex = 9;
@@ -436,7 +445,7 @@
             // 
             this.Cancelar.Enabled = false;
             this.Cancelar.ForeColor = System.Drawing.Color.Black;
-            this.Cancelar.Location = new System.Drawing.Point(439, 723);
+            this.Cancelar.Location = new System.Drawing.Point(828, 458);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(114, 40);
             this.Cancelar.TabIndex = 8;
@@ -448,7 +457,7 @@
             // 
             this.Salvar.Enabled = false;
             this.Salvar.ForeColor = System.Drawing.Color.Black;
-            this.Salvar.Location = new System.Drawing.Point(308, 723);
+            this.Salvar.Location = new System.Drawing.Point(708, 520);
             this.Salvar.Name = "Salvar";
             this.Salvar.Size = new System.Drawing.Size(114, 40);
             this.Salvar.TabIndex = 7;
@@ -459,7 +468,7 @@
             // Proximo
             // 
             this.Proximo.ForeColor = System.Drawing.Color.Black;
-            this.Proximo.Location = new System.Drawing.Point(439, 661);
+            this.Proximo.Location = new System.Drawing.Point(828, 396);
             this.Proximo.Name = "Proximo";
             this.Proximo.Size = new System.Drawing.Size(114, 40);
             this.Proximo.TabIndex = 6;
@@ -470,7 +479,7 @@
             // Anterior
             // 
             this.Anterior.ForeColor = System.Drawing.Color.Black;
-            this.Anterior.Location = new System.Drawing.Point(308, 661);
+            this.Anterior.Location = new System.Drawing.Point(708, 458);
             this.Anterior.Name = "Anterior";
             this.Anterior.Size = new System.Drawing.Size(114, 40);
             this.Anterior.TabIndex = 5;
@@ -513,6 +522,7 @@
             // 
             this.NomePaciente.Enabled = false;
             this.NomePaciente.Location = new System.Drawing.Point(96, 91);
+            this.NomePaciente.Multiline = false;
             this.NomePaciente.Name = "NomePaciente";
             this.NomePaciente.Size = new System.Drawing.Size(395, 25);
             this.NomePaciente.TabIndex = 1;
@@ -539,7 +549,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(149)))), ((int)(((byte)(146)))));
-            this.ClientSize = new System.Drawing.Size(1224, 782);
+            this.ClientSize = new System.Drawing.Size(1158, 749);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CadPacientes";

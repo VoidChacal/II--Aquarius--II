@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -67,11 +68,31 @@ namespace Aquarius
             IdadePaciente.Enabled = false; //alterar?
         }
 
+        private void TudoVazio()
+        {
+            NomePaciente.Text = "";
+            DescPaciente.Text = "";
+            SexoPaciente.Text = "";
+            CPFPaciente.Text = "";
+            RGPaciente.Text = "";
+            DtEntPaciente.Text = "";
+            Responsavel.Text = "";
+            ContResponsavel.Text = "";
+            IdadePaciente.Text = "";
+        }
+
         // ------------ Mostrar Dados --------------
         private void ShowDados()
         {
             CodPaciente.Text = AquariusMenu.Pacientes[atual].codigo.ToString();
             NomePaciente.Text = AquariusMenu.Pacientes[atual].nome;
+            IdadePaciente.Text = AquariusMenu.Pacientes[atual].idade;
+            SexoPaciente.Text = AquariusMenu.Pacientes[atual].sexo;
+            CPFPaciente.Text = AquariusMenu.Pacientes[atual].CPF;
+            RGPaciente.Text = AquariusMenu.Pacientes[atual].RG;
+            DtEntPaciente.Text = AquariusMenu.Pacientes[atual].DataEntrada;
+            Responsavel.Text = AquariusMenu.Pacientes[atual].Responsavel;
+            ContResponsavel.Text = AquariusMenu.Pacientes[atual].ContRespon;
             DescPaciente.Text = AquariusMenu.Pacientes[atual].descricao;
         }
 
@@ -80,7 +101,7 @@ namespace Aquarius
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(Cad_formClosing);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            //this.MaximizeBox = false;
             
         }
 
@@ -117,12 +138,12 @@ namespace Aquarius
             {
                 if (!ValidarCPF(cpf))
                 {
-                    MessageBox.Show("CPF inválido!");
+                    MessageBox.Show("CPF inválido!","Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else if (cpf.Length > 11)
             {
-                MessageBox.Show("O CPF deve conter 11 dígitos");
+                MessageBox.Show("O CPF deve conter 11 dígitos", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -145,7 +166,7 @@ namespace Aquarius
             }
             else if (rg.Length > 9)
             {
-                MessageBox.Show("O RG deve conter entre 7 a 9 dígitos.");
+                MessageBox.Show("O RG deve conter entre 7 a 9 dígitos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -181,6 +202,7 @@ namespace Aquarius
         // -------- Salvar Perfil Criado/Edit ----------
         private void Salvar_Click(object sender, EventArgs e)
         {
+            bool Verif = true;
             // MUDAR ESSA PORRA NÃO FUNCIONA MACACO
             String textDigUpper = SexoPaciente.Text;
 
@@ -191,18 +213,21 @@ namespace Aquarius
             if (!DateTime.TryParse(IdadePaciente.Text, out parsedDate))
             {
                 MessageBox.Show("Por favor, insira uma data válida no formato DD/MM/AAAA.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //HabilitaEdit();
+                IdadePaciente.Text = "";
+                HabilitaEdit();
+                Verif = false;
 
             }
-            if (SexoPaciente.Text != "M" && SexoPaciente.Text != "F") // <-- BLACK MONKEY
+            if (textUpper != "M" && textUpper != "F") // <-- BLACK MONKEY
             {
                 MessageBox.Show("Por favor, insira um sexo válido", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 SexoPaciente.Text = "";
+                Verif = false;
                 // CRIAR UMA CLASS PARA APAGAR TUDO
             }
             
             // Tudo certo :)
-            else
+            if (Verif == true)
             {
                 if (EditTipo)
                 {
@@ -213,7 +238,7 @@ namespace Aquarius
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].nome = NomePaciente.Text;
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].descricao = DescPaciente.Text;
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].idade = IdadePaciente.Text; //Alterar?
-                    AquariusMenu.Pacientes[AquariusMenu.contPacientes].sexo = SexoPaciente.Text;
+                    AquariusMenu.Pacientes[AquariusMenu.contPacientes].sexo = textUpper;
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].CPF = CPFPaciente.Text;
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].RG = RGPaciente.Text;
                     AquariusMenu.Pacientes[AquariusMenu.contPacientes].DataEntrada = DtEntPaciente.Text;
@@ -230,7 +255,7 @@ namespace Aquarius
                     AquariusMenu.Pacientes[atual].nome = NomePaciente.Text;
                     AquariusMenu.Pacientes[atual].descricao = DescPaciente.Text;
                     AquariusMenu.Pacientes[atual].idade = IdadePaciente.Text; //Alterar?
-                    AquariusMenu.Pacientes[atual].sexo = SexoPaciente.Text;
+                    AquariusMenu.Pacientes[atual].sexo = textUpper;
                     AquariusMenu.Pacientes[atual].CPF = CPFPaciente.Text;
                     AquariusMenu.Pacientes[atual].RG = RGPaciente.Text;
                     AquariusMenu.Pacientes[atual].DataEntrada = DtEntPaciente.Text;
@@ -301,7 +326,7 @@ namespace Aquarius
         // -------- Avançar para o proximo perfil ----------
         private void Proximo_Click(object sender, EventArgs e)
         {
-            if (atual < 0)
+            if (atual < int.Parse(CodPaciente.Text))
             {
                 atual++;
                 ShowDados();
@@ -316,6 +341,7 @@ namespace Aquarius
         private void Cancelar_Click(object sender, EventArgs e)
         {
             DesabilitarEdit();
+            TudoVazio();
             ShowDados();
         }
 
@@ -350,6 +376,28 @@ namespace Aquarius
             }
         }
 
+        // -------------- Enviar Foto btn -----------------
+        private void EnvFoto_Click(object sender, EventArgs e)
+        {
+            string imageLocation = "";
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
+
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    imageLocation = dialog.FileName;
+
+                    FotoPaciente.ImageLocation = imageLocation;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao carregar a imagem", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         // ------ Botão de preview da impressão -------
         private void button9_Click(object sender, EventArgs e)
         {
@@ -373,10 +421,21 @@ namespace Aquarius
             Dados = Dados + "Data de Entrada: " + DtEntPaciente.Text + (char)10 + (char)10;
             Dados = Dados + "Responsavel: " + Responsavel.Text + (char)10 + (char)10;
             Dados = Dados + "Contato do Responsavel: " + ContResponsavel.Text + (char)10 + (char)10;
-            Dados = Dados + "------------------------------------------------------------------" + (char)10 + (char)10;
-            Dados = Dados + "Descrição do Paciente: " + DescPaciente.Text + (char)10 + (char)10;
-            Dados = Dados + "------------------------------------------------------------------" + (char)10 + (char)10;
-            objImpressao.DrawString(Dados, new Font("Microsoft Sans Serif", 12, FontStyle.Regular), Brushes.Black, 50, 50);
+            Dados = Dados + "--------------------------------------------------------------------------------------------" + (char)10 + (char)10;
+            Dados = Dados + "------------------------------------- Descrição do Paciente ------------------------" + (char)10 + (char)10;
+            Dados = Dados + DescPaciente.Text + (char)10 + (char)10;
+
+            Font fonte = new Font("Microsoft Sans Serif", 12, FontStyle.Regular);
+
+            Brush pincel = Brushes.Black;
+
+
+            // Define o retângulo (dimensões) da área de impressão (ajustando para o tamanho da página)
+            RectangleF areaImpressao = new RectangleF(50, 50, e.MarginBounds.Width - 50, e.MarginBounds.Height - 50);
+
+            // Desenha o texto dentro da área definida, o que causa a quebra automática de linha
+            objImpressao.DrawString(Dados, fonte, pincel, areaImpressao);
+
 
             if (FotoPaciente.Image != null)
             {
@@ -405,6 +464,9 @@ namespace Aquarius
         }
         private void CadPacientes_Load(object sender, EventArgs e)
         {
+
+            //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA32
+
            // Main CadPacientes
         }
 
@@ -413,25 +475,11 @@ namespace Aquarius
             // Label Contato do Responsavel
         }
 
-        private void EnvFoto_Click(object sender, EventArgs e)
+        private void SexoPaciente_TextChanged(object sender, EventArgs e)
         {
-            string imageLocation = "";
-            try
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*";
+            String textDigUpper = SexoPaciente.Text;
 
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    imageLocation = dialog.FileName;
-
-                    FotoPaciente.ImageLocation = imageLocation;
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro ao carregar a imagem", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            String textUpper = textDigUpper.ToUpper();
         }
     }
 }
